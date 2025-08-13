@@ -52,7 +52,6 @@ header {
 
 .main {
   background-color: var(--color-surface-dim);
-  height: 100vh;
 }
 
 footer {
@@ -60,9 +59,12 @@ footer {
   color: var(--color-on-primary);
   text-align: center;
   padding: 1rem;
-  flex-shrink: 0; /* so footer doesn’t shrink */
-  position: sticky;
+  flex-shrink: 0;
+  position: fixed;
+  left: 0;
   bottom: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 @media (max-width: 600px) {

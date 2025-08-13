@@ -10,10 +10,9 @@
           class="search-input"
           placeholder="Search..."
           [(ngModel)]="searchTerm"
-          (keyup.enter)="onSearch()"
         />
       </div>
-      <button class="search-button">
+      <button class="search-button" (click)="onSearch()">
         <img
           src="/assets/icons/search-alt-svgrepo-com.svg"
           alt="search"
@@ -101,7 +100,19 @@
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
+        <option [value]="temporalProducts.length">
+          {{ temporalProducts.length }}
+        </option>
       </select>
     </div>
   </div>
 </div>
+
+<app-modal
+  [title]="modalTitle"
+  [subtitle]="modalMessage"
+  [isOpen]="isModalOpen"
+  [type]="modalType"
+  (closed)="onCloseModal()"
+>
+</app-modal>

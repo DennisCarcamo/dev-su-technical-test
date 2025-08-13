@@ -32,6 +32,19 @@ export class ProductsService implements IProductService {
       );
   }
 
+  public getProductById(id: string): Observable<FinancialProduct | null> {
+    return this.http
+      .get<FinancialProductDto>(`${environment.API_URL}/bp/products/${id}`)
+      .pipe(
+        map((response: FinancialProductDto) => {
+          const product: FinancialProduct | null = response
+            ? toFinancialProduct(response)
+            : null;
+          return product;
+        }),
+      );
+  }
+
   public deleteProduct(id: string): Observable<FinancialProduct[]> {
     return this.http
       .delete<FinancialProduct[]>(`${environment.API_URL}/bp/products/${id}`)
