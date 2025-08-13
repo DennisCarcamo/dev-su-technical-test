@@ -104,3 +104,31 @@ h2 {
   flex-direction: row;
   justify-content: right;
 }
+
+.modal-footer {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.btn {
+  border-radius: 8px;
+  height: 44px;
+  width: 150px;
+  padding: 0 16px;
+  font-size: 16px;
+}
+
+.btn-cancel {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+}
+
+.btn-continue {
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+  border: none;
+}

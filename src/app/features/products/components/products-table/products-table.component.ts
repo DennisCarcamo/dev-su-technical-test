@@ -18,11 +18,14 @@ export class ProductsTableComponent implements OnInit {
   @Input() public products: FinancialProduct[] = [];
   @Output() public searchTermChange: EventEmitter<string> =
     new EventEmitter<string>();
+  @Output() public emitDeleteProduct: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public isModalOpen: boolean = false;
   public modalType: ModalType = '';
   public modalMessage: string = '';
   public modalTitle: string = '';
+  public showModalActions: boolean = false;
 
   public searchTerm: string = '';
   public pageSize: number = 10;
@@ -46,8 +49,8 @@ export class ProductsTableComponent implements OnInit {
   }
 
   private showErrorModal(): void {
-    this.modalTitle = 'Error Detected';
-    this.modalMessage = 'Please check the form before continuing.';
+    this.modalTitle = 'Error de búsqueda';
+    this.modalMessage = 'Por favor, verifica criterio de búsqueda.';
     this.modalType = 'error';
     this.isModalOpen = true;
     this.detector.detectChanges();
@@ -77,8 +80,7 @@ export class ProductsTableComponent implements OnInit {
   }
 
   public onDelete(productId: string): void {
-    // Implement delete functionality
-    console.log('Delete clicked for product:', productId);
+    this.emitDeleteProduct.emit(productId);
   }
 
   public onEdit(productId: string): void {

@@ -3,7 +3,6 @@
     <div class="close-btn-container">
       <button class="modal-close" (click)="onClose()">&times;</button>
     </div>
-
     <header>
       <div class="title-header">
         <img
@@ -40,5 +39,10 @@
     <div class="modal-body">
       <ng-content></ng-content>
     </div>
+
+    <footer class="modal-footer">
+      <button class="btn btn-cancel" (click)="onCancel()">Cancelar</button>
+      <button class="btn btn-continue" (click)="onContinue()">Continuar</button>
+    </footer>
   </div>
 </div>

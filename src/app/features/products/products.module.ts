@@ -7,6 +7,7 @@ import { ProductsTableComponent } from './components/products-table/products-tab
 import { FormsModule } from '@angular/forms';
 import { TableHeaderComponent } from 'src/app/shared/components/table-header/table-header.component';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [ProductsListPageComponent, ProductsTableComponent],
@@ -16,6 +17,7 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
     FormsModule,
     TableHeaderComponent,
     ModalComponent,
+    ConfirmationModalComponent,
   ],
 })
 export class ProductsModule {}

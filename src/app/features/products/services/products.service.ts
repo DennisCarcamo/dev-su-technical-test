@@ -9,7 +9,10 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ApiResponseEntity } from 'src/app/core/data/entity/api-response.entity';
+import {
+  ApiResponseEntity,
+  ApiSimpleResponse,
+} from 'src/app/core/data/entity/api-response.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -45,10 +48,12 @@ export class ProductsService implements IProductService {
       );
   }
 
-  public deleteProduct(id: string): Observable<FinancialProduct[]> {
+  public deleteProduct(id: string): Observable<string> {
     return this.http
-      .delete<FinancialProduct[]>(`${environment.API_URL}/bp/products/${id}`)
-      .pipe(map((response: FinancialProduct[]) => response));
+      .delete<
+        ApiSimpleResponse<string>
+      >(`${environment.API_URL}/bp/products/${id}`)
+      .pipe(map((response: ApiSimpleResponse<string>) => response.message));
   }
 
   public updateProduct(

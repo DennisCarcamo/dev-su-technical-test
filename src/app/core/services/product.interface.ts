@@ -6,7 +6,7 @@ export abstract class IProductService {
   public abstract getProductById(
     id: string,
   ): Observable<FinancialProduct | null>;
-  public abstract deleteProduct(id: string): Observable<FinancialProduct[]>;
+  public abstract deleteProduct(id: string): Observable<string>;
   public abstract updateProduct(
     product: FinancialProduct,
   ): Observable<FinancialProduct[]>;

@@ -2,6 +2,7 @@
   <app-products-table
     [products]="products"
     (searchTermChange)="onSearchTermChange($event)"
+    (emitDeleteProduct)="onDeleteProduct($event)"
   ></app-products-table>
 </div>
 <app-modal
@@ -12,3 +13,13 @@
   (closed)="onCloseModal()"
 >
 </app-modal>
+<app-confirmation-modal
+  [productId]="confirmationProductId"
+  [title]="confirmationModalTitle"
+  [subtitle]="confirmationModalMessage"
+  [isOpen]="isConfirmationMsModalOpen"
+  [type]="confirmationModalType"
+  (closeModal)="onCloseConfirmationModal()"
+  (continue)="onConfirmDeleteProduct($event)"
+  (cancel)="onCancelDeleteProduct()"
+></app-confirmation-modal>

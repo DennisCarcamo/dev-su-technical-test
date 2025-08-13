@@ -18,6 +18,12 @@ export class ProductsListPageComponent implements OnInit {
   public isModalOpen: boolean = false;
   public modalType: ModalType = 'success';
 
+  public confirmationModalTitle: string = '';
+  public confirmationProductId: string = '';
+  public confirmationModalMessage: string = '';
+  public isConfirmationMsModalOpen: boolean = false;
+  public confirmationModalType: ModalType = 'success';
+
   constructor(
     private readonly productsService: ProductsService,
     private readonly detection: ChangeDetectorRef,
@@ -63,8 +69,50 @@ export class ProductsListPageComponent implements OnInit {
       });
   }
 
+  public onDeleteProduct(productId: string): void {
+    if (productId) {
+      this.confirmationProductId = productId;
+      this.confirmationModalMessage =
+        '¿Estás seguro de que deseas eliminar este producto?';
+      this.confirmationModalTitle = 'Confirmar eliminación';
+      this.confirmationModalType = 'warning';
+      this.isConfirmationMsModalOpen = true;
+      this.detection.detectChanges();
+    }
+  }
+
   public onCloseModal(): void {
     this.isModalOpen = false;
     this.detection.detectChanges();
+  }
+
+  public onCloseConfirmationModal(): void {
+    this.resetConfirmationModal();
+    this.isConfirmationMsModalOpen = false;
+    this.detection.detectChanges();
+  }
+
+  public onConfirmDeleteProduct(productId: string): void {
+    this.resetConfirmationModal();
+    this.isConfirmationMsModalOpen = false;
+    this.detection.detectChanges();
+    this.productsService
+      .deleteProduct(productId)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.loadProducts();
+      });
+  }
+
+  public onCancelDeleteProduct(): void {
+    this.resetConfirmationModal();
+    this.isConfirmationMsModalOpen = false;
+    this.detection.detectChanges();
+  }
+
+  private resetConfirmationModal(): void {
+    this.confirmationModalTitle = '';
+    this.confirmationModalMessage = '';
+    this.confirmationModalType = 'success';
   }
 }

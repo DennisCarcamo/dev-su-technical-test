@@ -90,7 +90,7 @@
 
 .data-table th {
   padding: 16px;
-  text-align: left;
+  text-align: center;
   font-size: 12px;
   font-weight: 600;
   color: var(--color-on-secondary);
@@ -248,4 +248,8 @@ img.white-filter {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.date-cell {
+  text-align: center;
 }

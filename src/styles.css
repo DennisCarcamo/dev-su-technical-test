@@ -46,6 +46,10 @@ body {
   --color-on-tertiary-container: rgb(102 60 47);
   --color-error: rgb(186 26 26);
   --color-on-error: rgb(255 255 255);
+  --color-success: rgb(42, 81, 44);
+  --color-on-success: rgb(184, 240, 223);
+  --color-warning: rgb(232, 212, 183);
+  --color-on-warning: rgb(179, 147, 64);
   --color-error-container: rgb(255 218 214);
   --color-on-error-container: rgb(147 0 10);
   --color-background: rgb(255 247 249);
