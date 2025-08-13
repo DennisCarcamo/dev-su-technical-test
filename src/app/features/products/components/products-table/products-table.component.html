@@ -1,0 +1,87 @@
+<div class="banking-container">
+  <!-- Header -->
+  <app-table-header title="Productos Financieros"></app-table-header>
+  <!-- Search and Add Section -->
+  <div class="controls-section">
+    <div class="search-container">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch()"
+      />
+    </div>
+    <button class="add-button" (click)="onAdd()">Agregar</button>
+  </div>
+
+  <!-- Data Table -->
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th class="logo-column">Logo</th>
+          <th class="name-column">Nombre</th>
+          <th class="description-column">
+            Descripción
+            <!-- <span class="info-icon">ⓘ</span> -->
+          </th>
+          <th class="date-column">
+            Fecha de liberación
+            <!-- <span class="info-icon">ⓘ</span> -->
+          </th>
+          <th class="date-column">
+            Fecha de reestructuración
+            <!-- <span class="info-icon">ⓘ</span> -->
+          </th>
+          <th class="actions-column">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" class="table-row">
+          <td class="logo-cell">
+            <div class="product-logo">{{ product.logo }}</div>
+          </td>
+          <td class="name-cell">{{ product.name }}</td>
+          <td class="description-cell">{{ product.description }}</td>
+          <td class="date-cell">{{ product.dateRelease | date }}</td>
+          <td class="date-cell">{{ product.dateRevision | date }}</td>
+          <td class="actions-cell">
+            <button class="menu-button" (click)="onEdit(product.id)">
+              <img
+                src="/assets/icons/edit-2-svgrepo-com.svg"
+                alt="Edit"
+                height="24"
+                width="24"
+              />
+            </button>
+            <button class="menu-button" (click)="onDelete(product.id)">
+              <img
+                src="/assets/icons/delete-3-svgrepo-com.svg"
+                alt="Delete"
+                height="24"
+                width="24"
+              />
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-section">
+    <div class="results-info">{{ products.length }} Resultados</div>
+    <div class="page-size-selector">
+      <select
+        [(ngModel)]="pageSize"
+        (change)="onPageSizeChange()"
+        class="page-size-select"
+      >
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+  </div>
+</div>

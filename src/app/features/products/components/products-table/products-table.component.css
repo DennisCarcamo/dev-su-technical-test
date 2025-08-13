@@ -1,0 +1,217 @@
+.banking-container {
+  margin: 0;
+  padding: 24px;
+  box-shadow: 3px 6px 12px var(--color-primary);
+  background-color: #f8f9fa;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Controls Section */
+.controls-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 16px;
+}
+
+.search-container {
+  flex: 0 0 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4299e1;
+}
+
+.search-input::placeholder {
+  color: #a0aec0;
+}
+
+.add-button {
+  padding: 12px 24px;
+  background-color: #ecc94b;
+  color: #2d3748;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #d69e2e;
+}
+
+/* Table Styles */
+.table-container {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table thead {
+  background-color: var(--color-secondary);
+}
+
+.data-table th {
+  padding: 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-on-secondary);
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+}
+
+.info-icon {
+  margin-left: 8px;
+  color: #a0aec0;
+  font-size: 12px;
+}
+
+.logo-column {
+  width: 80px;
+}
+
+.name-column {
+  width: 100px;
+}
+
+.description-column {
+  width: 200px;
+}
+
+.date-column {
+  width: 180px;
+}
+
+.actions-column {
+  width: 150px;
+}
+
+.table-row {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+  background-color: #f7fafc;
+}
+
+.data-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.product-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #a0aec0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 4px;
+  border-radius: 50%;
+  background-color: var(--color-secondary-container);
+  transition: background-color 0.2s ease;
+}
+
+.menu-button:hover {
+  background-color: var(--color-tertiary-container);
+  color: white;
+}
+
+/* Pagination Styles */
+.pagination-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.results-info {
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.page-size-select {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  color: #2d3748;
+  cursor: pointer;
+}
+
+.page-size-select:focus {
+  outline: none;
+  border-color: #4299e1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .banking-container {
+    padding: 16px;
+  }
+
+  .controls-section {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .search-container {
+    flex: 1;
+    width: 100%;
+  }
+
+  .data-table {
+    font-size: 12px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 12px 8px;
+  }
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

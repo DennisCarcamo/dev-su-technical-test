@@ -1,0 +1,26 @@
+/* Header Styles */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--color-primary);
+}
+
+.header-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0;
+  letter-spacing: 2px;
+}

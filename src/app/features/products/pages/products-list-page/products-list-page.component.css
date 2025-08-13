@@ -1,8 +1,6 @@
-.title {
-  color: var(--color-primary) !important;
-  text-align: center;
-}
-
-.subtitle {
-  color: var(--color-secondary) !important;
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
 }

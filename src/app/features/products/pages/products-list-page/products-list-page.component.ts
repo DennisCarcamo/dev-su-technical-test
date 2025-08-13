@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../services/products.service';
+import { take } from 'rxjs';
+import { FinancialProduct } from '../../models/financial-product.model';
 
 @Component({
   selector: 'app-products-list-page',
@@ -6,12 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products-list-page.component.css'],
 })
 export class ProductsListPageComponent implements OnInit {
-  constructor() {
+  public products: FinancialProduct[] = [];
+  public isLoadingProducts: boolean = true;
+
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly detection: ChangeDetectorRef,
+  ) {
     // empty
   }
 
   public ngOnInit(): void {
-    // eslint-disable-next-line no-console
-    console.log('Products List Page Initialized');
+    this.loadProducts();
+  }
+
+  private loadProducts(): void {
+    this.productsService
+      .getProducts()
+      .pipe(take(1))
+      .subscribe((products: FinancialProduct[]) => {
+        this.products = products;
+        this.isLoadingProducts = false;
+        this.detection.detectChanges();
+      });
   }
 }
