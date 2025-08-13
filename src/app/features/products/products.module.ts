@@ -5,9 +5,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsListPageComponent } from './pages/products-list-page/products-list-page.component';
 
 @NgModule({
-  declarations: [
-    ProductsListPageComponent
-  ],
+  declarations: [ProductsListPageComponent],
   imports: [CommonModule, ProductsRoutingModule],
 })
 export class ProductsModule {}

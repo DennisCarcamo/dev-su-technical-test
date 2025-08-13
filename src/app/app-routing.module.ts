@@ -3,11 +3,19 @@ import { PreloadAllModules, RouterModule, type Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'products',
     loadChildren: () =>
       import('./features/products/products.module').then(
         // eslint-disable-next-line @typescript-eslint/typedef
         (m) => m.ProductsModule,
+      ),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./features/home/home.module').then(
+        // eslint-disable-next-line @typescript-eslint/typedef
+        (m) => m.HomeModule,
       ),
   },
 ];

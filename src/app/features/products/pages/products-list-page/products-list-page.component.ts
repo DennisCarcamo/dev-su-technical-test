@@ -11,6 +11,7 @@ export class ProductsListPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    // eslint-disable-next-line no-console
     console.log('Products List Page Initialized');
   }
 }
