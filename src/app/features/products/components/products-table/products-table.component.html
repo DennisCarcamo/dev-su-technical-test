@@ -3,14 +3,24 @@
   <app-table-header title="Productos Financieros"></app-table-header>
   <!-- Search and Add Section -->
   <div class="controls-section">
-    <div class="search-container">
-      <input
-        type="text"
-        class="search-input"
-        placeholder="Search..."
-        [(ngModel)]="searchTerm"
-        (keyup.enter)="onSearch()"
-      />
+    <div class="searching-area">
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search..."
+          [(ngModel)]="searchTerm"
+          (keyup.enter)="onSearch()"
+        />
+      </div>
+      <button class="search-button">
+        <img
+          src="/assets/icons/search-alt-svgrepo-com.svg"
+          alt="search"
+          height="24"
+          width="24"
+        />
+      </button>
     </div>
     <button class="add-button" (click)="onAdd()">Agregar</button>
   </div>
@@ -40,12 +50,22 @@
       <tbody>
         <tr *ngFor="let product of products" class="table-row">
           <td class="logo-cell">
-            <div class="product-logo">{{ product.logo }}</div>
+            <div class="product-logo">
+              <img
+                [src]="product.logo"
+                alt="{{ product.name }} Logo"
+                class="product-logo-img white-filter"
+              />
+            </div>
           </td>
           <td class="name-cell">{{ product.name }}</td>
           <td class="description-cell">{{ product.description }}</td>
-          <td class="date-cell">{{ product.dateRelease | date }}</td>
-          <td class="date-cell">{{ product.dateRevision | date }}</td>
+          <td class="date-cell">
+            {{ product.dateRelease | date: "shortDate" : "" : "es" }}
+          </td>
+          <td class="date-cell">
+            {{ product.dateRevision | date: "shortDate" : "" : "es" }}
+          </td>
           <td class="actions-cell">
             <button class="menu-button" (click)="onEdit(product.id)">
               <img
