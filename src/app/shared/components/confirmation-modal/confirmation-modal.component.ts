@@ -18,7 +18,7 @@ import { ModalType } from '../../types/modal-types';
   standalone: true,
   imports: [FormsModule, CommonModule],
 })
-export class ConfirmationModalComponent implements OnInit {
+export class ConfirmationModalComponent {
   @Input() public productId: string = '';
   @Input() public title: string = '';
   @Input() public subtitle: string = '';
@@ -31,11 +31,6 @@ export class ConfirmationModalComponent implements OnInit {
 
   constructor() {
     //
-  }
-
-  public ngOnInit(): void {
-    // eslint-disable-next-line no-console
-    console.log('Confirmation Modal Initialized');
   }
 
   public onClose(): void {

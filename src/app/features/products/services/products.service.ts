@@ -48,21 +48,51 @@ export class ProductsService implements IProductService {
       );
   }
 
+  public createProduct(
+    product: FinancialProductDto,
+  ): Observable<FinancialProduct | null> {
+    return this.http
+      .post<
+        ApiResponseEntity<FinancialProductDto>
+      >(`${environment.API_URL}/bp/products`, product)
+      .pipe(
+        map((response: ApiResponseEntity<FinancialProductDto>) => {
+          const createdProduct: FinancialProduct | null = response
+            ? toFinancialProduct(response.data)
+            : null;
+          return createdProduct;
+        }),
+      );
+  }
+
+  public updateProduct(
+    product: FinancialProductDto,
+  ): Observable<FinancialProduct | null> {
+    return this.http
+      .put<
+        ApiResponseEntity<FinancialProductDto>
+      >(`${environment.API_URL}/bp/products/${product.id}`, product)
+      .pipe(
+        map((response: ApiResponseEntity<FinancialProductDto>) => {
+          const updatedProduct: FinancialProduct | null = response
+            ? toFinancialProduct(response.data)
+            : null;
+          return updatedProduct;
+        }),
+      );
+  }
+
+  public verifyProductExistence(id: string): Observable<boolean> {
+    return this.http
+      .get<boolean>(`${environment.API_URL}/bp/products/verification/${id}`)
+      .pipe(map((response: boolean) => response));
+  }
+
   public deleteProduct(id: string): Observable<string> {
     return this.http
       .delete<
         ApiSimpleResponse<string>
       >(`${environment.API_URL}/bp/products/${id}`)
       .pipe(map((response: ApiSimpleResponse<string>) => response.message));
-  }
-
-  public updateProduct(
-    product: FinancialProduct,
-  ): Observable<FinancialProduct[]> {
-    return this.http
-      .put<
-        FinancialProduct[]
-      >(`${environment.API_URL}/bp/products/${product.id}`, product)
-      .pipe(map((response: FinancialProduct[]) => response));
   }
 }

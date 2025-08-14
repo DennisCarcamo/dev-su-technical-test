@@ -1,0 +1,7 @@
+.centered-content {
+  display: flex;
+  justify-content: center;
+  padding-top: 20vh;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}

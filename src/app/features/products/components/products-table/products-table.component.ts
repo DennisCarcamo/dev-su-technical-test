@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FinancialProduct } from '../../models/financial-product.model';
 import { ModalType } from 'src/app/shared/types/modal-types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-table',
@@ -31,7 +32,10 @@ export class ProductsTableComponent implements OnInit {
   public pageSize: number = 10;
   public temporalProducts: FinancialProduct[] = [];
 
-  constructor(private readonly detector: ChangeDetectorRef) {
+  constructor(
+    private readonly detector: ChangeDetectorRef,
+    private readonly router: Router,
+  ) {
     // empty
   }
 
@@ -50,7 +54,7 @@ export class ProductsTableComponent implements OnInit {
 
   private showErrorModal(): void {
     this.modalTitle = 'Error de búsqueda';
-    this.modalMessage = 'Por favor, verifica criterio de búsqueda.';
+    this.modalMessage = 'Por favor, verifica el criterio de búsqueda.';
     this.modalType = 'error';
     this.isModalOpen = true;
     this.detector.detectChanges();
@@ -62,8 +66,7 @@ export class ProductsTableComponent implements OnInit {
   }
 
   public onAdd(): void {
-    // Implement add functionality
-    console.log('Add new product');
+    void this.router.navigate(['/products/create']);
   }
 
   public onPageSizeChange(): void {
@@ -84,7 +87,6 @@ export class ProductsTableComponent implements OnInit {
   }
 
   public onEdit(productId: string): void {
-    // Implement edit functionality
-    console.log('Edit clicked for product:', productId);
+    void this.router.navigate(['/products/edit', productId]);
   }
 }
