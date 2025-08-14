@@ -1,1 +1,89 @@
-<p>home works!</p>
+<div class="main-content">
+  <div class="carousel">
+    <div
+      class="carousel-inner"
+      [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+    >
+      <div class="carousel-item" *ngFor="let img of images">
+        <img [src]="img" alt="Carousel Image" />
+      </div>
+    </div>
+
+    <button class="carousel-btn prev" (click)="prevSlide()">&#10094;</button>
+    <button class="carousel-btn next" (click)="nextSlide()">&#10095;</button>
+  </div>
+
+  <!-- Info Section -->
+  <section class="info-section">
+    <h1>Proyecto: Aplicación de Gestión de Productos Financieros</h1>
+
+  <section>
+    <h2>F1. Listado de productos financieros</h2>
+    <p>Se requiere una aplicación para visualizar los diferentes productos financieros ofrecidos por la Institución Banco. Los datos se obtendrán desde una API externa.</p>
+    <ul>
+      <li>Visualización de todos los productos.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>F2. Búsqueda de productos financieros</h2>
+    <p>El usuario debe poder buscar productos mediante un campo de texto.</p>
+    <ul>
+      <li>Se debe filtrar la lista de productos según el criterio de búsqueda.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>F3. Cantidad de registros</h2>
+    <p>La aplicación debe mostrar la cantidad de resultados mostrados en la lista y permitir seleccionar cuántos registros mostrar por página.</p>
+    <ul>
+      <li>Select con valores: 5, 10 y 20 registros.</li>
+      <li>Mostrar el número total de resultados.</li>
+      <li>Agregar paginación simple si hay muchos registros.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>F4. Agregar producto</h2>
+    <p>Se debe permitir crear un nuevo producto financiero desde la interfaz.</p>
+    <ul>
+      <li>Formulario de registro con todos los campos requeridos.</li>
+      <li>Validaciones de datos según reglas de negocio.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>F5. Editar producto</h2>
+    <p>Se debe permitir modificar los datos de un producto existente.</p>
+    <ul>
+      <li>Formulario prellenado con la información actual del producto.</li>
+      <li>Validaciones de datos y actualización mediante API.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>F6. Eliminar producto</h2>
+    <p>Se debe permitir eliminar un producto de manera segura.</p>
+    <ul>
+      <li>Confirmación antes de eliminar.</li>
+      <li>Actualización automática del listado tras la eliminación.</li>
+    </ul>
+  </section>
+  </section>
+
+  <section class="contact-section">
+    <h2 class="info-label contact-title">Contacto</h2>
+    <div class="contact-info">
+      <img
+        src="/assets/images/dennis-profile-pic.png"
+        alt="Dennis Joel Carcamo"
+        class="avatar"
+      />
+      <div class="contact-details">
+        <h4 class="name-title"> Dennis Joel Carcamo</h4>
+        <h5><span class="text-emphasis info-label">Email:</span> <a href="mailto:dejocael@gmail.com"> dejocael@gmail.com</a></h5>
+        <h5><span class="text-emphasis info-label">LinkedIn:</span> <a href="https://www.linkedin.com/in/dennis-carcamo/" target="_blank"> Dennis Cárcamo</a></h5>
+      </div>
+    </div>
+  </section>
+</div>

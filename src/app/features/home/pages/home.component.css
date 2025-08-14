@@ -1,0 +1,157 @@
+.main-content {
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 400px;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  height: 400px;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.info-section {
+  padding: 2rem;
+  text-align: center;
+  background: #f7f7f7;
+  border-top: 1px solid var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  gap: 8px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  min-width: 600px;
+  padding: 20px;
+  background: var(--color-tertiary-container);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  gap: 20px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  text-align: left;
+  font-size: 22px;
+  width: 100%;
+  gap: 2px;
+}
+
+.avatar {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-emphasis {
+  font-weight: bold;
+}
+
+h5 {
+  margin: 2px;
+  font-weight: 500;
+}
+
+h4 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.contact-title {
+  padding-bottom: 16px;
+}
+
+.name-title {
+  color: var(--color-primary);
+}
+
+.info-label {
+  color: var(--color-secondary);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2 {
+  color: #2c3e50;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style-type: decimal;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
