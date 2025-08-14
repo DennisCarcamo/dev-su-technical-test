@@ -1,23 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ModalComponent } from './modal.component';
 
 describe('ModalComponent', () => {
   let component: ModalComponent;
-  let fixture: ComponentFixture<ModalComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ModalComponent ]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(ModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    component = new ModalComponent();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should emit closed when onClose is called', () => {
+    const emitSpy: jest.SpyInstance = jest.spyOn(component.closed, 'emit');
+    component.onClose();
+    expect(emitSpy).toHaveBeenCalled();
+  });
+
+  it('should return correct headerClass when type is set', () => {
+    component.type = 'error';
+    expect(component.headerClass).toBe('modal-header error');
+  });
+
+  it('should return default headerClass when type is empty', () => {
+    component.type = '';
+    expect(component.headerClass).toBe('modal-header');
   });
 });

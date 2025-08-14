@@ -16,6 +16,7 @@
           type="text"
           id="id"
           class="form-input"
+          placeholder="ej: 3YP"
           [class.error]="
             hasError('id', 'required') ||
             hasError('id', 'maxlength') ||
@@ -41,7 +42,7 @@
           id="name"
           class="form-input"
           formControlName="name"
-          placeholder="Cuenta ahorro"
+          placeholder="ej. Cuenta ahorro"
           [class.error]="
             hasError('name', 'required') ||
             hasError('name', 'minlength') ||
@@ -68,6 +69,7 @@
           type="text"
           id="description"
           class="form-input"
+          placeholder="ej. Cuenta de ahorro con tasa de interés"
           [class.error]="
             hasError('description', 'required') ||
             hasError('description', 'minlength') ||
@@ -98,6 +100,7 @@
           type="text"
           id="logo"
           class="form-input"
+          placeholder="ej. https://mi-logo.com/logo.png"
           [class.error]="hasError('logo', 'required')"
           formControlName="logo"
         />
@@ -115,6 +118,7 @@
           id="releaseDate"
           class="form-input"
           formControlName="releaseDate"
+          placeholder="ej. 2026-12-31"
           [class.error]="
             hasError('releaseDate', 'required') ||
             hasError('releaseDate', 'iso8601') ||
@@ -142,6 +146,7 @@
           id="reviewDate"
           class="form-input"
           formControlName="reviewDate"
+          placeholder="ej. 2026-12-31"
           [class.error]="
             hasError('reviewDate', 'required') ||
             hasError('reviewDate', 'iso8601') ||

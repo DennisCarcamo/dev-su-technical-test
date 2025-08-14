@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import {
   FinancialProduct,
-  FinancialProductDto,
   toFinancialProductDto,
 } from '../../models/financial-product.model';
 import { catchError, of, take } from 'rxjs';
@@ -336,10 +335,12 @@ export class ProductEditCreateFormComponent implements OnInit {
               .subscribe((createdProduct: FinancialProduct | null) => {
                 if (createdProduct) {
                   this.showSuccessMessage(
-                    'Success',
+                    'Operación exitosa',
                     'Producto creado con éxito',
                   );
-                  void this.router.navigate(['/products']);
+                  setTimeout(() => {
+                    void this.router.navigate(['/products']);
+                  }, 3000);
                 }
               });
           }
@@ -358,10 +359,12 @@ export class ProductEditCreateFormComponent implements OnInit {
         .subscribe((updatedProduct: FinancialProduct | null) => {
           if (updatedProduct) {
             this.showSuccessMessage(
-              'Success',
+              'Operación exitosa',
               'Producto actualizado con éxito',
             );
-            void this.router.navigate(['/products']);
+            setTimeout(() => {
+              void this.router.navigate(['/products']);
+            }, 3000);
           }
         });
     } else {

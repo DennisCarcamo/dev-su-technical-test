@@ -4,7 +4,6 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
