@@ -117,11 +117,21 @@
           formControlName="releaseDate"
           [class.error]="
             hasError('releaseDate', 'required') ||
-            hasError('releaseDate', 'pattern')
+            hasError('releaseDate', 'iso8601') ||
+            hasError('releaseDate', 'futureDate')
           "
         />
         <span *ngIf="hasError('releaseDate', 'required')" class="error-message">
           Este campo es requerido
+        </span>
+        <span *ngIf="hasError('releaseDate', 'iso8601')" class="error-message">
+          La fecha debe ser formato ISO 8601 (YYYY-MM-DD).
+        </span>
+        <span
+          *ngIf="hasError('releaseDate', 'futureDate')"
+          class="error-message"
+        >
+          La fecha debe ser el futuro.
         </span>
       </div>
 
@@ -134,11 +144,21 @@
           formControlName="reviewDate"
           [class.error]="
             hasError('reviewDate', 'required') ||
-            hasError('reviewDate', 'pattern')
+            hasError('reviewDate', 'iso8601') ||
+            hasError('reviewDate', 'futureDate')
           "
         />
         <span *ngIf="hasError('reviewDate', 'required')" class="error-message">
           Este campo es requerido
+        </span>
+        <span *ngIf="hasError('reviewDate', 'iso8601')" class="error-message">
+          La fecha debe ser formato ISO 8601 (YYYY-MM-DD).
+        </span>
+        <span
+          *ngIf="hasError('reviewDate', 'futureDate')"
+          class="error-message"
+        >
+          La fecha debe ser el futuro.
         </span>
       </div>
     </div>
@@ -156,3 +176,12 @@
     </div>
   </form>
 </div>
+
+<app-modal
+  [title]="modalTitle"
+  [subtitle]="modalMessage"
+  [isOpen]="isModalOpen"
+  [type]="modalType"
+  (closed)="onCloseModal()"
+>
+</app-modal>

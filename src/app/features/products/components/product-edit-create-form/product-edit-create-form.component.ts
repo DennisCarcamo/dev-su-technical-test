@@ -11,9 +11,11 @@ import { ProductsService } from '../../services/products.service';
 import {
   FinancialProduct,
   FinancialProductDto,
-  toFinancialProduct,
+  toFinancialProductDto,
 } from '../../models/financial-product.model';
 import { catchError, of, take } from 'rxjs';
+import { ModalType } from 'src/app/shared/types/modal-types';
+import { iso8601FutureDateValidator } from 'src/app/shared/validators/iso8601-future-date.validator';
 
 @Component({
   selector: 'app-product-edit-create-form',
@@ -24,10 +26,15 @@ export class ProductEditCreateFormComponent implements OnInit {
   public registrationForm!: FormGroup;
   public isEditMode: boolean = false;
 
+  public modalTitle: string = '';
+  public modalMessage: string = '';
+  public isModalOpen: boolean = false;
+  public modalType: ModalType = 'success';
+
   constructor(
     private readonly fb: FormBuilder,
     private readonly route: ActivatedRoute,
-    private readonly detector: ChangeDetectorRef,
+    private readonly detection: ChangeDetectorRef,
     private readonly productService: ProductsService,
     private readonly router: Router,
   ) {
@@ -271,20 +278,38 @@ export class ProductEditCreateFormComponent implements OnInit {
       ],
       releaseDate: [
         '',
-        (control: AbstractControl): ValidationErrors | null =>
-          Validators.required(control),
+        [
+          (control: AbstractControl): ValidationErrors | null =>
+            Validators.required(control),
+          iso8601FutureDateValidator,
+        ],
       ],
       reviewDate: [
         '',
-        (control: AbstractControl): ValidationErrors | null =>
-          Validators.required(control),
+        [
+          (control: AbstractControl): ValidationErrors | null =>
+            Validators.required(control),
+          iso8601FutureDateValidator,
+        ],
       ],
     });
   }
 
   public onSubmit(): void {
-    const newProduct: FinancialProductDto = this.registrationForm
-      .value as FinancialProductDto;
+    const newProduct: FinancialProduct = {
+      id: String(this.registrationForm.get('id')?.value ?? ''),
+      name: String(this.registrationForm.get('name')?.value ?? ''),
+      description: String(
+        this.registrationForm.get('description')?.value ?? '',
+      ),
+      logo: String(this.registrationForm.get('logo')?.value ?? ''),
+      dateRelease: new Date(
+        String(this.registrationForm.get('releaseDate')?.value ?? ''),
+      ),
+      dateRevision: new Date(
+        String(this.registrationForm.get('reviewDate')?.value ?? ''),
+      ),
+    };
 
     if (!this.isEditMode && this.registrationForm.valid) {
       // if is not Edit mode, means will save a new one
@@ -293,22 +318,17 @@ export class ProductEditCreateFormComponent implements OnInit {
         .pipe(take(1))
         .subscribe((exists: boolean) => {
           if (exists) {
-            this.showErrorMessage(
-              'Error',
-              'Product already exists',
-              toFinancialProduct(newProduct),
-            );
+            this.showErrorMessage('Error', 'Este producto ya existe');
           } else {
             this.productService
-              .createProduct(newProduct)
+              .createProduct(toFinancialProductDto(newProduct))
               .pipe(
                 take(1),
                 // eslint-disable-next-line @typescript-eslint/typedef, @typescript-eslint/no-unused-vars
                 catchError((_err) => {
                   this.showErrorMessage(
                     'Error',
-                    'Failed to create product',
-                    toFinancialProduct(newProduct),
+                    'Error al crear el producto, intente nuevamente',
                   );
                   return of(null);
                 }),
@@ -317,8 +337,7 @@ export class ProductEditCreateFormComponent implements OnInit {
                 if (createdProduct) {
                   this.showSuccessMessage(
                     'Success',
-                    'Product created successfully',
-                    createdProduct,
+                    'Producto creado con éxito',
                   );
                   void this.router.navigate(['/products']);
                 }
@@ -327,17 +346,12 @@ export class ProductEditCreateFormComponent implements OnInit {
         });
     } else if (this.isEditMode && this.registrationForm.valid) {
       this.productService
-        .updateProduct(newProduct)
-
+        .updateProduct(toFinancialProductDto(newProduct))
         .pipe(
           take(1),
           // eslint-disable-next-line @typescript-eslint/typedef, @typescript-eslint/no-unused-vars
           catchError((_err) => {
-            this.showErrorMessage(
-              'Error',
-              'Failed to update product',
-              toFinancialProduct(newProduct),
-            );
+            this.showErrorMessage('Error', 'Error al actualizar el producto');
             return of(null);
           }),
         )
@@ -345,8 +359,7 @@ export class ProductEditCreateFormComponent implements OnInit {
           if (updatedProduct) {
             this.showSuccessMessage(
               'Success',
-              'Product updated successfully',
-              updatedProduct,
+              'Producto actualizado con éxito',
             );
             void this.router.navigate(['/products']);
           }
@@ -356,20 +369,20 @@ export class ProductEditCreateFormComponent implements OnInit {
     }
   }
 
-  public showSuccessMessage(
-    title: string,
-    message: string,
-    product: FinancialProduct,
-  ): void {
-    console.log(title, message, product);
+  public showSuccessMessage(title: string, message: string): void {
+    this.modalTitle = title;
+    this.modalMessage = message;
+    this.modalType = 'success';
+    this.isModalOpen = true;
+    this.detection.detectChanges();
   }
 
-  public showErrorMessage(
-    title: string,
-    message: string,
-    product: FinancialProduct,
-  ): void {
-    console.error(title, message, product);
+  public showErrorMessage(title: string, message: string): void {
+    this.modalTitle = title;
+    this.modalMessage = message;
+    this.modalType = 'error';
+    this.isModalOpen = true;
+    this.detection.detectChanges();
   }
 
   public onReset(): void {
@@ -386,5 +399,13 @@ export class ProductEditCreateFormComponent implements OnInit {
     const control: AbstractControl | null =
       this.registrationForm.get(controlName);
     return !!(control && control.touched && control.hasError(error));
+  }
+
+  public onCloseModal(): void {
+    this.modalTitle = '';
+    this.modalMessage = '';
+    this.modalType = '';
+    this.isModalOpen = false;
+    this.detection.detectChanges();
   }
 }

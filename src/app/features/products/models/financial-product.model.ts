@@ -52,7 +52,7 @@ export function toFinancialProductDto(
   model: FinancialProduct,
 ): FinancialProductDto {
   // eslint-disable-next-line @typescript-eslint/typedef
-  const iso = (d: Date): string => d.toISOString().slice(0, 10); // yyyy-mm-dd
+  const iso = (d: Date): string => new Date(d).toISOString().slice(0, 10); // yyyy-mm-dd
   return {
     id: model.id,
     name: model.name,

@@ -60,10 +60,10 @@
           <td class="name-cell">{{ product.name }}</td>
           <td class="description-cell">{{ product.description }}</td>
           <td class="date-cell">
-            {{ product.dateRelease | date: "shortDate" : "" : "es" }}
+            {{ product.dateRelease | date: "shortDate" : "" : "en" }}
           </td>
           <td class="date-cell">
-            {{ product.dateRevision | date: "shortDate" : "" : "es" }}
+            {{ product.dateRevision | date: "shortDate" : "" : "en" }}
           </td>
           <td class="actions-cell">
             <button class="menu-button" (click)="onEdit(product.id)">
