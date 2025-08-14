@@ -18,6 +18,11 @@ const routes: Routes = [
         (m) => m.HomeModule,
       ),
   },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

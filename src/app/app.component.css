@@ -15,6 +15,9 @@ p {
 
 /* Header */
 header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: var(--color-primary);
   color: var(--color-on-primary);
   text-align: center;
@@ -76,4 +79,17 @@ footer {
   .top-menu li {
     margin: 0.5rem 0;
   }
+}
+
+.logo-container {
+  gap: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.tertiary-filter {
+  filter: brightness(0) saturate(100%) invert(75%) sepia(9%) saturate(1293%)
+    hue-rotate(325deg) brightness(105%) contrast(92%);
 }
